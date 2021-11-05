@@ -1,63 +1,46 @@
-# CodeIgniter 4 Application Starter
+--------------------
 
-## What is CodeIgniter?
+> **:warning::warning: ANNOUNCEMENT :warning::warning:**
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](http://codeigniter.com).
+**Please use the updated and composer compatible library: [Midtrans PHP](https://github.com/Midtrans/midtrans-php).
+For better more modern composer compatibility.**
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+This repo still be here for archive and compatibility purpose. But it's always recommended to use the newer version [Midtrans PHP](https://github.com/Midtrans/midtrans-php).
 
-More information about the plans for version 4 can be found in [the announcement](http://forum.codeigniter.com/thread-62615.html) on the forums.
+> **:speaker: END OF ANNOUNCEMENT :speaker:**
 
-The user guide corresponding to this version of the framework can be found
-[here](https://codeigniter4.github.io/userguide/).
+---------------------
 
-## Installation & updates
+Midtrans Codeigniter library
+=======================================================
+MIdtrans :heart: CI 4!
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
+### Requirements
+The following plugin is tested under following environment:
+* PHP v7.2+ or greater
+* Codeigniter v4
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+## Installation
+* Download the library and extract the .zip 
+* Merge all the files to your codeigniter directory
 
-## Setup
+### load library
+Check to `app/controllers/Payment.php`, change with your server key, in your dashboard midtrans
+```php
+//set production to true for production environment
+$params = array('server_key' => '<your server key>', 'production' => false);
+$this->load->library('veritrans');
+$this->veritrans->config($params);
+```
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+Check to `app/views/Payment/pay.php`, change data-client-key with your client key, in your dashboard midtrans
+```javascript
+// Remove ".sandbox" from script src URL for production environment
+<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="<Set your ClientKey here>"></script>
+```
 
-## Important Change with index.php
+### DOCS
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+For more info please open dan read [snap docs](https://docs.midtrans.com/)
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
-
-**Please** read the user guide for a better explanation of how CI4 works!
-
-## Repository Management
-
-We use Github issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
-
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
-
-## Server Requirements
-
-PHP version 7.3 or higher is required, with the following extensions installed:
-
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
-
-Additionally, make sure that the following extensions are enabled in your PHP:
-
-- json (enabled by default - don't turn it off)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php)
-- xml (enabled by default - don't turn it off)
+Or more clearly just click [here](https://github.com/Midtrans/midtrans-php)
